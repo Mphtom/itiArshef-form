@@ -5,7 +5,7 @@ import {
   handleFileChange,
 } from "../submitFormData/formFunctions";
 
-const StepPersonalInfo = ({ formData, setFormData }) => {
+const StepPersonalInfo = ({ formData, setFormData, formErrors }) => {
   return (
     <div className="space-y-10 ">
       <h1 className="font-bold text-2xl text-center w-full text-main">Personal Information</h1>
@@ -17,6 +17,8 @@ const StepPersonalInfo = ({ formData, setFormData }) => {
           value={formData.fullName}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.fullName}
+
         />
       </div>
       <div>
@@ -28,16 +30,20 @@ const StepPersonalInfo = ({ formData, setFormData }) => {
           accept="image/*"
           onChange={(e) => handleFileChange(e, setFormData)}
           required
+          errorMessage={formErrors.photo}
+
         />
       </div>
       <div>
         <Input
-          label="person image"
+          label="Mobile"
           id="mobile"
           name="mobile"
           value={formData.mobile}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.mobile}
+
         />
       </div>
       <div>
@@ -49,17 +55,21 @@ const StepPersonalInfo = ({ formData, setFormData }) => {
           value={formData.email}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.email}
+
         />
       </div>
       <div>
         <Input
-                  label="city Of Birth"
+          label="city Of Birth"
 
           id="cityOfBirth"
           name="cityOfBirth"
           value={formData.cityOfBirth}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.cityOfBirth}
+
         />
       </div>
     </div>

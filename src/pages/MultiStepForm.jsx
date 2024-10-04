@@ -34,7 +34,7 @@ const MultiStepForm = () => {
   });
 
 
-
+  const [formErrors, setFormErrors] = useState({}); 
   
   return (
     <div className="flex min-h-screen bg-gray-100 ">
@@ -43,16 +43,15 @@ const MultiStepForm = () => {
         <img src="Pink and Black Modern Initials Logo Design.png" alt="" />
       </aside>
       <div className="flex-1 px-6 py-10 space-y-4">
-        <div className='min-h-px max-h-400px'>
-        {renderStep(currentStep, formData, setFormData)}
-
+      <div className='min-h-px max-h-400px'>
+          {renderStep(currentStep, formData, setFormData, formErrors)} 
         </div>
         <div className="flex justify-between">
           {currentStep > 0 && <Button onClick={()=>handlePrevious(setCurrentStep)} text={"previous"} variant={"outline"} />}
           {currentStep < steps.length - 1 ? (
-            <Button onClick={()=>handleNext(setCurrentStep,steps)} text={"NEXT"} className='place-self-end'/>
+            <Button onClick={()=>handleNext(setCurrentStep, steps, currentStep, formData, setFormErrors)} text={"NEXT"} className='place-self-end'/>
           ) : (
-            <Button onClick={()=>handleSubmit(currentStep,steps,formData)} text={"Submit"}/>
+            <Button onClick={()=>handleSubmit(currentStep,steps,formData ,setFormErrors)} text={"Submit"}/>
           )}
         </div>
       </div>
@@ -61,4 +60,4 @@ const MultiStepForm = () => {
   );
 };
 
-export default MultiStepForm;
+export default MultiStepForm; 

@@ -2,7 +2,7 @@
 import Input from "../Ui/Input";
 import { handleInputChange } from "../submitFormData/formFunctions";
 
-const StepWorkExperience = ({ formData, setFormData }) => {
+const StepWorkExperience = ({ formData, setFormData ,formErrors}) => {
   return (
     <div className="space-y-4">
       <h1 className="font-bold text-2xl text-center w-full text-main">
@@ -17,6 +17,7 @@ const StepWorkExperience = ({ formData, setFormData }) => {
           value={formData.jobTitle}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.jobTitle}
         />
       </div>
       <div>
@@ -27,6 +28,7 @@ const StepWorkExperience = ({ formData, setFormData }) => {
           value={formData.companyName}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.companyName}
         />
       </div>
       <div>
@@ -37,6 +39,7 @@ const StepWorkExperience = ({ formData, setFormData }) => {
           value={formData.yearsOfExperience}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.yearsOfExperience}
         />
       </div>
       <div>

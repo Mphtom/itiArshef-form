@@ -2,7 +2,7 @@
 import Input from "../Ui/Input";
 import { handleInputChange } from "../submitFormData/formFunctions";
 
-const StepTeachingPreferences = ({ formData, setFormData }) => {
+const StepTeachingPreferences = ({ formData, setFormData ,formErrors}) => {
   return (
     <div className=" space-y-12">
       <h1 className="font-bold text-2xl text-center w-full text-main">
@@ -17,6 +17,7 @@ const StepTeachingPreferences = ({ formData, setFormData }) => {
           value={formData.teachingBranches}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.teachingBranches}
         />
       </div>
       <div>
@@ -27,6 +28,7 @@ const StepTeachingPreferences = ({ formData, setFormData }) => {
           value={formData.preferredCourses}
           onChange={(e) => handleInputChange(e, setFormData)}
           required
+          errorMessage={formErrors.preferredCourses}
         />
       </div>
     </div>
