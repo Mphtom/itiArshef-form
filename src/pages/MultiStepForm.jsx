@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import StepIndicator from '../components/Ui/StepIndicator';
-import StepPersonalInfo from '../components/MultiStepFormSteps/StepPersonalInfo';
-import StepEducationDetails from '../components/MultiStepFormSteps/StepEducationDetails';
-import StepTeachingPreferences from '../components/MultiStepFormSteps/StepTeachingPreferences';
-import StepWorkExperience from '../components/MultiStepFormSteps/StepWorkExperience';
-import { submitFormData } from '../components/submitFormData/formFunctions'; 
+import {handleSubmit,handlePrevious,handleNext,renderStep}  from '../components/submitFormData/HandelFormData'
 import Button  from '../components/Ui/Button';
 
 const steps = [
@@ -37,35 +33,9 @@ const MultiStepForm = () => {
     isFreelancer: ''
   });
 
-  const handleNext = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
-  };
 
-  const handlePrevious = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0));
-  };
 
-  const handleSubmit = () => {
-    if (currentStep === steps.length - 1) {
-      submitFormData(formData);
-    }
-  };
-
-  const renderStep = () => {
-    switch (currentStep) {
-      case 0:
-        return <StepPersonalInfo formData={formData} setFormData={setFormData} />;
-      case 1:
-        return <StepEducationDetails formData={formData} setFormData={setFormData} />;
-      case 2:
-        return <StepTeachingPreferences formData={formData} setFormData={setFormData} />;
-      case 3:
-        return <StepWorkExperience formData={formData} setFormData={setFormData} />;
-      default:
-        return null;
-    }
-  };
-
+  
   return (
     <div className="flex min-h-screen bg-gray-100 ">
       <aside className="w-80 mr-6 space-y-12 bg-main-light px-2">
@@ -74,15 +44,15 @@ const MultiStepForm = () => {
       </aside>
       <div className="flex-1 px-6 py-10 space-y-4">
         <div className='min-h-px max-h-400px'>
-                  {renderStep()}
+        {renderStep(currentStep, formData, setFormData)}
 
         </div>
         <div className="flex justify-between">
-          {currentStep > 0 && <Button onClick={handlePrevious} text={"previous"} variant={"outline"} />}
+          {currentStep > 0 && <Button onClick={()=>handlePrevious(setCurrentStep)} text={"previous"} variant={"outline"} />}
           {currentStep < steps.length - 1 ? (
-            <Button onClick={handleNext} text={"NEXT"} className='place-self-end'/>
+            <Button onClick={()=>handleNext(setCurrentStep,steps)} text={"NEXT"} className='place-self-end'/>
           ) : (
-            <Button onClick={handleSubmit} text={"Submit"}/>
+            <Button onClick={()=>handleSubmit(currentStep,steps,formData)} text={"Submit"}/>
           )}
         </div>
       </div>
